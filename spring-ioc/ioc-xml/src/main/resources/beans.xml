@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean
+            id="user1Service"
+            name="user1Service1,user1Service2,user1Service3"
+            class="com.liuhao.springIoc.xml.service.impl.User1ServiceImpl"
+            scope="singleton"
+            lazy-init="false"
+            init-method="show">
+    </bean>
+
+    <bean id="user2Service1"
+          class="com.liuhao.springIoc.xml.beanFactory.UserBeanFactory"
+          factory-method="createUser2Service"
+          init-method="show">
+    </bean>
+
+    <bean id="userBeanFactory"
+          class="com.liuhao.springIoc.xml.beanFactory.UserBeanFactory">
+    </bean>
+
+    <bean id="user2Service2"
+          factory-bean="userBeanFactory"
+          factory-method="getUser2Service">
+    </bean>
+
+    <bean id="userFactory"
+          class="com.liuhao.springIoc.xml.beanFactory.UserFactory">
+    </bean>
+
+</beans>
