@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="order1Service1" class="com.liuhao.springIoc.xml.service.impl.Order1ServiceImpl"></bean>
+
+    <bean id="user3Service1" class="com.liuhao.springIoc.xml.service.impl.User3ServiceImpl">
+        <constructor-arg name="name" value="张三"></constructor-arg>
+        <constructor-arg name="age" value="15"></constructor-arg>
+        <constructor-arg name="orderService" ref="order1Service1"></constructor-arg>
+    </bean>
+
+    <bean id="user3Service2" class="com.liuhao.springIoc.xml.service.impl.User3ServiceImpl" init-method="show">
+        <property name="name" value="李四"></property>
+        <property name="age" value="12"></property>
+        <property name="orderService" ref="order1Service1"></property>
+        <property name="list">
+            <list>
+                <value>哈哈</value>
+                <value>呵呵</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="第一" value="我"></entry>
+                <entry key="第二" value="你"></entry>
+            </map>
+        </property>
+        <property name="orderServices">
+            <list>
+                <ref bean="order1Service1"></ref>
+            </list>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="xxx">xxx</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="userBeanFactoryPostProcessor" class="com.liuhao.springIoc.xml.processor.UserBeanFactoryPostProcessor"></bean>
+    <bean id="userBeanFactoryPostProcessorSub" class="com.liuhao.springIoc.xml.processor.UserBeanFactoryPostProcessorSub"></bean>
+
+    <bean id="userBeanPostProcessor" class="com.liuhao.springIoc.xml.processor.UserBeanPostProcessor"></bean>
+
+
+
+</beans>

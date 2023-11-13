@@ -27,7 +27,7 @@
           factory-method="getUser2Service">
     </bean>
 
-    <bean id="userFactory"
+    <bean id="user2Service3"
           class="com.liuhao.springIoc.xml.beanFactory.UserFactory">
     </bean>
 

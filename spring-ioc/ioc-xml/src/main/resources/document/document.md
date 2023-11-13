@@ -49,7 +49,7 @@
 
 #### 无参构造
 
-代码：需要有无参构造
+需要有无参构造
 
 ```java
 public class TestServiceImpl {
@@ -58,19 +58,15 @@ public class TestServiceImpl {
 }
 ```
 
-配置
-
 ```xml
-<bean id="TestService" class="con.liuhao.service.impl.TestServiceImpl"></bean> 
+<bean id="testService" class="con.liuhao.service.impl.TestServiceImpl"></bean> 
 ```
 
-​		此时存储到Spring容器（singleObjects单例池）中的Bean的beanName是userDao，值是UserDaoImpl对象
+​		此时存储到Spring容器（singleObjects单例池）中的Bean的beanName是testService，值是TestServiceImpl对象
 
 #### 静态工厂
 
 ​		如果一个Bean不能通过new直接实例化，而是通过工厂类的某个静态方法创建的，需要把<bean>标签的class属性配置为工厂类：
-
-代码
 
 ```java
 public class TestServiceImpl {
@@ -85,8 +81,6 @@ public class TestServiceFactoryBean {
 }
 ```
 
-配置
-
 ```xml
 <bean id="TestService" class="com.liuhao.beanFactory.TestServiceFactoryBean" factory-method="createInstance" factory-method="getTestService">
 </bean>
@@ -95,8 +89,6 @@ public class TestServiceFactoryBean {
 #### 实例工厂
 
 ​		如果一个Bean不能通过new直接实例化，而是通过工厂类的某个实例方法创建的，需要先配置工厂的bean标签然后在需要创建的对象的bean标签的factory-bean属性配置为工厂类对象，factory-method属性配置为产生实例的方法。
-
-代码
 
 ```java
 public class TestServiceImpl {
@@ -110,8 +102,6 @@ public class TestServiceFactoryBean {
     }
 }
 ```
-
-配置
 
 ```xml
 <bean id="testServiceFactory" class="com.liuhao.beanFactory.TestServiceFactoryBean"></bean>
@@ -131,7 +121,6 @@ public interface FactoryBean<T> {
 		return true;
 	}
 }
-
 ```
 
 代码
@@ -156,7 +145,7 @@ public class TestServiceFactoryBean implements FactoryBean<TestService> {
 <bean id="testService" class="com.liuhao.beanFactory.TestServiceFactoryBean"></bean>
 ```
 
-​		TestServiceFactoryBean 会被实例化了，并存储到了单例池 singletonObjects 中，但是 getObject() 方法尚未被执行，TestServiceImpl 也没被实例化，当首次用到 TestServiceImpl 时，才调用 getObject() ，此工厂方式产生的Bean实例不会存储到单例池 singletonObjects 中，会存储到 factoryBeanObjectCache 缓存池中，并且后期每次使用到userDao都从该缓存池中返回的是同一个userDao实例。
+​		TestServiceFactoryBean 会被实例化了，并存储到了单例池 singletonObjects 中，但是 getObject() 方法尚未被执行，TestServiceImpl 也没被实例化，当首次用到 TestServiceImpl 时，才调用 getObject() ，此工厂方式产生的Bean实例不会存储到单例池 singletonObjects 中，会存储到 factoryBeanObjectCache 缓存池中，并且后期每次使用到testService都从该缓存池中返回的是同一个userDao实例。
 
 ### bean 的属性注入
 
