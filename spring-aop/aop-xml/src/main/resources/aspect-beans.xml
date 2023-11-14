@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="myAdvice" class="com.liuhao.springaop.xml.aspect.MyAdvice"></bean>
+
+    <aop:config>
+        <!--配置切点表达式,对哪些方法进行增强-->
+        <aop:pointcut id="myPointcut" expression="execution(void com.liuhao.springaop.xml.service.impl.User1ServiceImpl.show())"/>
+        <!--切面=切点+通知-->
+        <aop:aspect ref="myAdvice">
+            <!--指定前置通知方法是beforeAdvice-->
+            <aop:before method="beforeAdvice" pointcut-ref="myPointcut"/>
+            <!--指定后置通知方法是afterAdvice-->
+            <aop:after-returning method="afterAdvice" pointcut-ref="myPointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
