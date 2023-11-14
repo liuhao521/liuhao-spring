@@ -9,7 +9,7 @@ public class FieldDiTest {
 
     public static void main(String[] args) {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("field-di-beans.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
 
         UserService user3Service1 = (UserService)applicationContext.getBean("user3Service1");
         System.out.println("有参构造注入：" + user3Service1);

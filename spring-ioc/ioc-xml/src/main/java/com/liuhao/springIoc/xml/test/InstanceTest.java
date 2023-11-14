@@ -9,7 +9,7 @@ public class InstanceTest {
 
     public static void main(String[] args) {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("instance-beans.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
 
         // 无参构造实例化
         UserService user1Service1 = (UserService)applicationContext.getBean("user1Service");
